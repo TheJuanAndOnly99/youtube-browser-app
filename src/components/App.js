@@ -4,6 +4,7 @@ import youtube from '../apis/youtube';
 import VideoList from './VideoList';
 
 const KEY = 'AIzaSyAdAH5aZgO0nTQctqNO_leQzgvFDHu6YW0';
+const EKEY = `${process.env.REACT_APP_YOUTUBE_API_KEY}`;
 
 class App extends React.Component {
   state = { videos: [] };
