@@ -5,10 +5,13 @@ import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 
 const KEY = 'AIzaSyAdAH5aZgO0nTQctqNO_leQzgvFDHu6YW0';
-const EKEY = `${process.env.REACT_APP_YOUTUBE_API_KEY}`;
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
+
+  componentDidMount() {
+    this.onTermSubmit('Lionel Messi');
+  }
 
   onTermSubmit = async (term) => {
     const response = await youtube.get('/search', {
@@ -21,7 +24,10 @@ class App extends React.Component {
       }
     });
 
-    this.setState({ videos: response.data.items });
+    this.setState({
+      videos        : response.data.items,
+      selectedVideo : response.data.items[0]
+    });
   };
 
   onVideoSelect = (video) => {
